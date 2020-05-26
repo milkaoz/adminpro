@@ -1,1 +1,56 @@
-<p>progress works!</p>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Barra de progreso</h4>
+                <div class="progress">
+                    <!--
+                    No se puede ocupar inteporlacion para los atributos aria-valuenow, aria-valuemin, aria-valuemax {{}}
+                    por que son atributos personalizados de un div.
+                    Para poder utilizar atributos personalizados se debe utilizar [attr.nombreAtributo] para que angular
+                    lo pueda renderizar
+                  -->
+                    <!--div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%"></div-->
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" [attr.arialValuenow]="progreso" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" [style.width]="progreso + '%'"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button" (click)="cambiarValor(-5)">
+                      <i class="mdi mdi-minus"></i>
+                    </button>
+                  </span>
+                    <!--
+                    La directiva ngModel permite añadir contenido dinámico a nuestros archivos HTML
+                    para que funcione se debe importar el FormsModule en el archivo pages.modules.ts
+                    import { FormsModule } from '@angular/forms';
+                  -->
+                    <input type="text" class="form-control" name="progreso" [(ngModel)]="progreso">
+                    <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button" (click)="cambiarValor(+5)">
+                      <i class="mdi mdi-plus">
+
+                      </i>
+                    </button>
+                  </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body">
+                This is some text within a card block.
+            </div>
+        </div>
+    </div>
+</div>
